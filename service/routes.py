@@ -85,14 +85,37 @@ def get_accounts(account_id):
 # UPDATE AN EXISTING ACCOUNT
 ######################################################################
 
-# ... place you code here to UPDATE an account ...
+def test_update_account(self):
+    """It should Update an existing Account"""
+    # create an Account to update
+    test_account = AccountFactory()
+    # send a self.client.post() request to the BASE_URL with a json payload of test_account.serialize()
+    resp = self.client.post(BASE_URL, json=test_account.serialize())
+    # assert that the resp.status_code is status.HTTP_201_CREATED
+    # update the account
+    # get the data from resp.get_json() as new_account
+    # change new_account["name"] to something known
+    # send a self.client.put() request to the BASE_URL with a json payload of new_account
+    # assert that the resp.status_code is status.HTTP_200_OK
+    # get the data from resp.get_json() as updated_account
+    # assert that the updated_account["name"] is whatever you changed it to
 
 
 ######################################################################
 # DELETE AN ACCOUNT
 ######################################################################
 
-# ... place you code here to DELETE an account ...
+@app.route("/accounts/<int:account_id>", methods=["DELETE"])
+def delete_accounts(account_id):
+    """
+    Delete an Account
+    This endpoint will delete an Account based on the account_id that is requested
+    """
+    app.logger.info("Request to delete an Account with id: %s", account_id)
+    account = Account.find(account_id)
+    if account:
+        account.delete()
+    return "", status.HTTP_204_NO_CONTENT
 
 
 ######################################################################
