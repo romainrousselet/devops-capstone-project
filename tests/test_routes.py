@@ -186,19 +186,7 @@ class TestAccountService(TestCase):
     ######################################################################
     # LIST ALL ACCOUNTS
     ######################################################################
-'''
-    @app.route("/accounts", methods=["GET"])
-    def test_list_accounts():
-        """
-        List all Accounts
-        This endpoint will list all Accounts
-        """
-        app.logger.info("Request to list Accounts")
-        accounts = Account.all()
-        account_list = [account.serialize() for account in accounts]
-        app.logger.info("Returning [%s] accounts", len(account_list))
-        return jsonify(account_list), status.HTTP_200_OK
-'''
+
     def test_get_account_list(self):
         """It should Get a list of Accounts"""
         self._create_accounts(5)
